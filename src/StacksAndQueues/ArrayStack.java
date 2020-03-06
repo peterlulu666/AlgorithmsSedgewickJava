@@ -35,6 +35,11 @@ public class ArrayStack<AnyType> {
             return null;
 
         }
+        // Check if the currentSize is less than the half of capacity
+        if (this.currentSize == capacity / 4) {
+            shrinkArray();
+
+        }
         // Declare the removedData
         var removedData = array[this.currentSize - 1];
         // Delete the data
@@ -60,22 +65,39 @@ public class ArrayStack<AnyType> {
 
     private void extendArray() {
         // Declare extendCapacity
-        var extendCapacity = capacity * 2;
+        var extendCapacity = this.capacity * 2;
         // Declare extendArray
         AnyType[] extendArray = (AnyType[]) new Object[extendCapacity];
         // Copy data in array to extendArray
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < this.currentSize; i++) {
             extendArray[i] = array[i];
 
         }
         // Let array point to extendArray
         // Let array reference to extendArray
         // Copy address of extendArray to array
-        array = extendArray;
+        this.array = extendArray;
         // Let capacity point to extendCapacity
         // Let capacity reference to extendCapacity
         // Copy address of extendCapacity to capacity
-        capacity = extendCapacity;
+        this.capacity = extendCapacity;
+
+    }
+
+    void shrinkArray() {
+        // Declare shrinkCapacity
+        var shrinkCapacity = this.capacity / 2;
+        // Declare shrinkArray
+        AnyType[] shrinkArray = (AnyType[]) new Object[shrinkCapacity];
+        // Copy the data in array to shrinkArray
+        for (int i = 0; i < this.currentSize; i++) {
+            shrinkArray[i] = array[i];
+
+        }
+        // Let the capacity point to the shrinkCapacity
+        this.capacity = shrinkCapacity;
+        // Let the array point to the shrinkArray
+        this.array = shrinkArray;
 
     }
 
@@ -87,8 +109,13 @@ public class ArrayStack<AnyType> {
         arrayStack.push(400);
         arrayStack.push(500);
         System.out.println(arrayStack.pop());
+        System.out.println(arrayStack.pop());
+        System.out.println(arrayStack.pop());
+        System.out.println(arrayStack.pop());
         arrayStack.show();
         System.out.println(Arrays.toString(arrayStack.array));
 
     }
+
 }
+
