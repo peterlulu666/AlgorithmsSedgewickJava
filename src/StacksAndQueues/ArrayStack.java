@@ -87,7 +87,7 @@ public class ArrayStack<AnyType> {
         arrayStack.push(400);
         arrayStack.push(500);
         System.out.println(arrayStack.pop());
-        arrayStack.show();              
+        arrayStack.show();
         System.out.println(Arrays.toString(arrayStack.array));
 
     }
